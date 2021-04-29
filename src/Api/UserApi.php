@@ -92,6 +92,24 @@ class UserApi extends abstractApi
         $this->client->put("/users/{$userRef}", $payload);
     }
 
-    // delete user
-    // anaonymise user
+    /**
+     * The user is not deleted from the database,
+     * but it is marked for deletion and will not be included in further API calls unless deleted users are explicitly requested.
+     *
+     * @param int $userRef
+     */
+    public function delete(int $userRef): void
+    {
+        $this->client->delete("/users/{$userRef}");
+    }
+
+    /**
+     * Anonymises the specified user, setting all personal details to “anonymised”.
+     *
+     * @param int $userRef
+     */
+    public function anonymiseUser(int $userRef): void
+    {
+        $this->client->post("/users/{$userRef}/anonymise");
+    }
 }
