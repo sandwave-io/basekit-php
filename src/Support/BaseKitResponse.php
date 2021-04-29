@@ -24,6 +24,9 @@ class BaseKitResponse
         return new BaseKitResponse($response);
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function json(): array
     {
         $json = json_decode($this->response, true);

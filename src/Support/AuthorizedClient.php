@@ -12,30 +12,26 @@ use SandwaveIo\BaseKit\Exceptions\UnauthorizedException;
 
 class AuthorizedClient
 {
-    /** @var string */
-    private $apiKey;
+    private Client $client;
 
-    /** @var Client */
-    private $client;
-
-    /** @var LoggerInterface|null */
-    private $logger;
+    private ?LoggerInterface $logger;
 
     /**
      * AuthorizedClient constructor.
      *
      * @param string               $baseUrl
-     * @param string               $apiKey
-     * @param array<string>        $guzzleOptions
+     * @param string               $username
+     * @param string               $password
+     * @param array<mixed>         $guzzleOptions
      * @param LoggerInterface|null $logger
      */
-    public function __construct(string $baseUrl, string $apiKey, array $guzzleOptions = [], ?LoggerInterface $logger = null)
+    public function __construct(string $baseUrl, string $username, string $password, array $guzzleOptions = [], ?LoggerInterface $logger = null)
     {
-        $this->apiKey = $apiKey;
         $this->logger = $logger;
 
         $this->client = new Client(array_merge($guzzleOptions, [
             'base_uri' => $baseUrl,
+            'auth' => [$username, $password],
         ]));
     }
 
@@ -44,33 +40,74 @@ class AuthorizedClient
         $this->client = $client;
     }
 
+    /**
+     * @param string       $endpoint
+     * @param array<mixed> $body
+     * @param array<mixed> $query
+     * @param int|null     $expectedResponse
+     *
+     * @return BaseKitResponse
+     */
     public function get(string $endpoint, array $body = [], array $query = [], ?int $expectedResponse = null): BaseKitResponse
     {
         return $this->request('GET', $endpoint, $body, $query, $expectedResponse);
     }
 
+    /**
+     * @param string       $endpoint
+     * @param array<mixed> $body
+     * @param array<mixed> $query
+     * @param int|null     $expectedResponse
+     *
+     * @return BaseKitResponse
+     */
     public function post(string $endpoint, array $body = [], array $query = [], ?int $expectedResponse = null): BaseKitResponse
     {
         return $this->request('POST', $endpoint, $body, $query, $expectedResponse);
     }
 
+    /**
+     * @param string       $endpoint
+     * @param array<mixed> $body
+     * @param array<mixed> $query
+     * @param int|null     $expectedResponse
+     *
+     * @return BaseKitResponse
+     */
     public function put(string $endpoint, array $body = [], array $query = [], ?int $expectedResponse = null): BaseKitResponse
     {
         return $this->request('PUT', $endpoint, $body, $query, $expectedResponse);
     }
 
+    /**
+     * @param string       $endpoint
+     * @param array<mixed> $body
+     * @param array<mixed> $query
+     * @param int|null     $expectedResponse
+     *
+     * @return BaseKitResponse
+     */
     public function delete(string $endpoint, array $body = [], array $query = [], ?int $expectedResponse = null): BaseKitResponse
     {
         return $this->request('DELETE', $endpoint, $body, $query, $expectedResponse);
     }
 
+    /**
+     * @param string       $method
+     * @param string       $endpoint
+     * @param array<mixed> $body
+     * @param array<mixed> $query
+     * @param int|null     $expectedResponse
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return BaseKitResponse
+     */
     private function request(string $method, string $endpoint, array $body = [], array $query = [], ?int $expectedResponse = null): BaseKitResponse
     {
         // Build request options.
         $metaData = [
-            'headers' => [
-                'Authorization' => 'ApiKey ' . $this->apiKey,
-            ],
+            'headers' => [],
             'http_errors' => false,
         ];
 
@@ -86,7 +123,6 @@ class AuthorizedClient
             'body' => $body,
             'expected_response' => $expectedResponse ?? 'NOT SET',
         ];
-        $logContext['meta_data']['headers']['Authorization'] = 'ApiKey masked-api-key';
         $this->log(
             sprintf(
                 'BaseKit.REQUEST: %s %s',
@@ -134,6 +170,11 @@ class AuthorizedClient
         }
     }
 
+    /**
+     * @param array<mixed> $parameters
+     *
+     * @return string
+     */
     private function buildQuery(array $parameters): string
     {
         return ($parameters === []) ? '' : ('?' . http_build_query($parameters));
@@ -147,6 +188,10 @@ class AuthorizedClient
         return $response->getStatusCode() >= 200 && $response->getStatusCode() < 300;
     }
 
+    /**
+     * @param string       $message
+     * @param array<mixed> $context
+     */
     private function log(string $message, array $context = []): void
     {
         if ($this->logger instanceof LoggerInterface) {
