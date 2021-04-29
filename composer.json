@@ -1,0 +1,38 @@
+{
+    "name": "sandwave-io/basekit-php",
+    "description": "A PHP SDK for the BaseKit REST API.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thomas Ploegaert",
+            "email": "thomas@sandwave.io"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^6.2.0|^7.0.1",
+        "psr/log": "^1.1",
+        "webmozart/assert": "^1.3.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "phpstan/phpstan": "^0.12.25",
+        "phpunit/phpunit": "^7.5",
+        "uptimeproject/php-cs-fixer-config": "^1.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SandwaveIo\\BaseKit\\": "./src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SandwaveIo\\BaseKit\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
