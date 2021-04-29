@@ -2,6 +2,14 @@
 
 namespace SandwaveIo\BaseKit\Api;
 
+use SandwaveIo\BaseKit\Support\AuthorizedClient;
+
 abstract class abstractApi
 {
+    protected AuthorizedClient $client;
+
+    public function __construct(AuthorizedClient $client)
+    {
+        $this->client = $client;
+    }
 }

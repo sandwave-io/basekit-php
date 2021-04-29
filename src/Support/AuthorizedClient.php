@@ -23,9 +23,10 @@ class AuthorizedClient
 
     /**
      * AuthorizedClient constructor.
-     * @param string $baseUrl
-     * @param string $apiKey
-     * @param array<string> $guzzleOptions
+     *
+     * @param string               $baseUrl
+     * @param string               $apiKey
+     * @param array<string>        $guzzleOptions
      * @param LoggerInterface|null $logger
      */
     public function __construct(string $baseUrl, string $apiKey, array $guzzleOptions = [], ?LoggerInterface $logger = null)
