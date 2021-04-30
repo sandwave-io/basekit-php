@@ -10,32 +10,27 @@ on:
   pull_request:
     branches: [ main ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
+
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
         php-versions: ['7.4','8.0']
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     steps:
     - uses: actions/checkout@v2
     
     - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php-versions }}
-          extensions: mbstring, intl
-          ini-values: post_max_size=256M, short_open_tag=On
-          coverage: xdebug
-          tools: php-cs-fixer, phpunit
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+        extensions: mbstring, intl
+        ini-values: post_max_size=256M, short_open_tag=On
+        coverage: xdebug
+        tools: php-cs-fixer, phpunit
 
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
