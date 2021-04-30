@@ -10,7 +10,7 @@ use SandwaveIo\BaseKit\Exceptions\BaseKitClientException;
 use SandwaveIo\BaseKit\Exceptions\ForbiddenException;
 use SandwaveIo\BaseKit\Exceptions\UnauthorizedException;
 
-class AuthorizedClient
+final class AuthorizedClient
 {
     private Client $client;
 

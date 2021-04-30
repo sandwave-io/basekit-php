@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\BaseKit\Api;
 
-class LoginApi extends abstractApi
+final class LoginApi extends AbstractApi
 {
     /**
      * This method will return a secret hash string that can be used to provide a login URL to the user.

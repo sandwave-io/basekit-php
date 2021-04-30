@@ -5,7 +5,7 @@ namespace SandwaveIo\BaseKit\Api;
 use SandwaveIo\BaseKit\Domain\Enum\ActivationStatusEnum;
 use SandwaveIo\BaseKit\Domain\Enum\SiteTypeEnum;
 
-class SitesApi extends abstractApi
+final class SitesApi extends AbstractApi
 {
     /**
      * @param int                  $accountHolderRef

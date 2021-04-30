@@ -4,7 +4,7 @@ namespace SandwaveIo\BaseKit\Api;
 
 use SandwaveIo\BaseKit\Support\AuthorizedClient;
 
-abstract class abstractApi
+abstract class AbstractApi
 {
     protected AuthorizedClient $client;
 
