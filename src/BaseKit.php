@@ -4,6 +4,7 @@ namespace SandwaveIo\BaseKit;
 
 use Psr\Log\LoggerInterface;
 use SandwaveIo\BaseKit\Api\LoginApi;
+use SandwaveIo\BaseKit\Api\PackageApi;
 use SandwaveIo\BaseKit\Api\SitesApi;
 use SandwaveIo\BaseKit\Api\UserApi;
 use SandwaveIo\BaseKit\Support\AuthorizedClient;
@@ -15,6 +16,7 @@ final class BaseKit
     public UserApi $userApi;
     public LoginApi $loginApi;
     public SitesApi $sitesApi;
+    public PackageApi $packageApi;
 
     public function __construct(string $username, string $password, ?string $baseUrl = null, ?LoggerInterface $logger = null)
     {
@@ -27,5 +29,6 @@ final class BaseKit
         $this->userApi = new UserApi($client);
         $this->loginApi = new LoginApi($client);
         $this->sitesApi = new SitesApi($client);
+        $this->packageApi = new PackageApi($client);
     }
 }

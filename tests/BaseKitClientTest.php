@@ -5,6 +5,7 @@ namespace SandwaveIo\BaseKit\Tests;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use SandwaveIo\BaseKit\Api\LoginApi;
+use SandwaveIo\BaseKit\Api\PackageApi;
 use SandwaveIo\BaseKit\Api\SitesApi;
 use SandwaveIo\BaseKit\Api\UserApi;
 use SandwaveIo\BaseKit\BaseKit;
@@ -19,5 +20,6 @@ class BaseKitClientTest extends TestCase
         Assert::assertInstanceOf(UserApi::class, $client->userApi, 'The User api could not be instantiated.');
         Assert::assertInstanceOf(LoginApi::class, $client->loginApi, 'The LoginApi could not be instantiated.');
         Assert::assertInstanceOf(SitesApi::class, $client->sitesApi, 'The SiteApi could not be instantiated.');
+        Assert::assertInstanceOf(PackageApi::class, $client->packageApi, 'The PackageApi could not be instantiated.');
     }
 }
