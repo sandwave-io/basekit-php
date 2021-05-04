@@ -2,30 +2,29 @@
 
 namespace SandwaveIo\BaseKit\Api;
 
-
 class SslApi extends AbstractApi
 {
     /**
-     * This function will add your supplied ssl certificate to your created website
+     * This function will add your supplied ssl certificate to your created website.
      *
-     * @param string $domain
-     * @param string $privateKey PEM formatted private key
-     * @param string $certificate PEM formatted certificate
-     * @param array<string> $domains List of additional domains
-     * @param array $intermediates
+     * @param string        $domain
+     * @param string        $privateKey    PEM formatted private key
+     * @param string        $certificate   PEM formatted certificate
+     * @param array<string> $domains       List of additional domains
+     * @param array<string> $intermediates
      */
-    public function addSsl(string $domain, string $privateKey,string $certificate, array $domains = [], array $intermediates = []): void
+    public function addSsl(string $domain, string $privateKey, string $certificate, array $domains = [], array $intermediates = []): void
     {
         $payload = [
             'key' => $privateKey,
-            'cert' => $certificate
+            'cert' => $certificate,
         ];
 
-        if(count($domains) > 1){
+        if (count($domains) > 1) {
             $payload['domains'] = $domains;
         }
 
-        if(count($intermediates) > 1){
+        if (count($intermediates) > 1) {
             $payload['intermediates'] = $intermediates;
         }
 
