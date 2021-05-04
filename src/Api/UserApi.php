@@ -2,6 +2,8 @@
 
 namespace SandwaveIo\BaseKit\Api;
 
+use SandaveIo\BaseKit\Domain\AccountHolder;
+
 final class UserApi extends AbstractApi
 {
     /**
@@ -25,7 +27,7 @@ final class UserApi extends AbstractApi
         string $languageCode,
         ?int $resellerRef = null,
         ?array $metaData = null
-    ): void {
+    ): AccountHolder {
         $payload = [
             'brandRef'      => $brandRef,
             'firstName'     => $firstName,
@@ -44,7 +46,8 @@ final class UserApi extends AbstractApi
             $payload['metadata'] = $metaData;
         }
 
-        $this->client->post('/users', $payload);
+        $response = $this->client->post('/users', $payload);
+        return AccountHolder::fromArray($response->json());
     }
 
     /**
