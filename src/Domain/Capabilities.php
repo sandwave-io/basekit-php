@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace SandaveIo\BaseKit\Domain;
+namespace SandwaveIo\BaseKit\Domain;
 
-class Capabilities implements DomainObjectInterface
+final class Capabilities implements DomainObjectInterface
 {
     public string $liveSites;
     public string $allowUsers;

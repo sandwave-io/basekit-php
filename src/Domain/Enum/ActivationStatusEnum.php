@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\BaseKit\Domain\Enum;
 
-class ActivationStatusEnum extends AbstractEnum
+final class ActivationStatusEnum extends AbstractEnum
 {
     const STATUS_ACTIVE = 'active';
     const STATUS_INACTIVE = 'inactive';

@@ -5,23 +5,23 @@ namespace SandwaveIo\BaseKit\Tests\Helpers;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Assert;
 use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
 use SandwaveIo\BaseKit\BaseKit;
 use SandwaveIo\BaseKit\Support\AuthorizedClient;
 
-class MockedClientFactory
+final class MockedClientFactory
 {
     const USERNAME = 'test';
     const PASSWORD = 'bigseretdonttellanyone';
     const BASE_URL = 'https://example.com';
 
-    public static function assertRoute(string $method, string $route, TestCase $testCase): callable
+    public static function assertRoute(string $method, string $route): callable
     {
-        return function (RequestInterface $request) use ($method, $route, $testCase) {
-            $testCase->assertSame(strtoupper($method), strtoupper($request->getMethod()));
-            $testCase->assertSame($route, $request->getUri()->getPath());
+        return function (RequestInterface $request) use ($method, $route): void {
+            Assert::assertSame(strtoupper($method), strtoupper($request->getMethod()));
+            Assert::assertSame($route, $request->getUri()->getPath());
         };
     }
 
@@ -46,8 +46,8 @@ class MockedClientFactory
             $logger
         );
 
-        if ($assertClosure) {
-            $handlerStack->push(function (callable $handler) use ($assertClosure) {
+        if ($assertClosure !== null) {
+            $handlerStack->push(function (callable $handler) use ($assertClosure): callable {
                 return function (RequestInterface $request, $options) use ($handler, $assertClosure) {
                     $assertClosure($request);
                     return $handler($request, $options);

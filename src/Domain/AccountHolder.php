@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace SandaveIo\BaseKit\Domain;
+namespace SandwaveIo\BaseKit\Domain;
 
-class AccountHolder implements DomainObjectInterface
+final class AccountHolder implements DomainObjectInterface
 {
     public int $ref;
     public string $firstName;

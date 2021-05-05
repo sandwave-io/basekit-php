@@ -4,6 +4,6 @@ namespace SandwaveIo\BaseKit\Exceptions;
 
 use InvalidArgumentException as BaseInvalidArgumentException;
 
-class InvalidArgumentException extends BaseInvalidArgumentException
+final class InvalidArgumentException extends BaseInvalidArgumentException
 {
 }

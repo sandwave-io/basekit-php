@@ -2,6 +2,6 @@
 
 namespace SandwaveIo\BaseKit\Exceptions;
 
-class ForbiddenException extends BaseKitClientException
+final class ForbiddenException extends BaseKitClientException
 {
 }

@@ -4,7 +4,6 @@ namespace SandwaveIo\BaseKit\Tests;
 
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
-use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
 use SandwaveIo\BaseKit\Exceptions\BadRequestException;
 use SandwaveIo\BaseKit\Exceptions\BaseKitClientException;
@@ -13,7 +12,7 @@ use SandwaveIo\BaseKit\Exceptions\UnauthorizedException;
 use SandwaveIo\BaseKit\Support\AuthorizedClient;
 use SandwaveIo\BaseKit\Tests\Helpers\MockedClientFactory;
 
-class AuthorizedClientTest extends TestCase
+final class AuthorizedClientTest extends TestCase
 {
     public function testConstruct(): void
     {
@@ -21,24 +20,31 @@ class AuthorizedClientTest extends TestCase
         Assert::assertInstanceOf(AuthorizedClient::class, $client);
     }
 
-    /** @dataProvider requestVariants */
+    /**
+     * @psalm-param class-string<\Throwable>|null $exception
+     * @dataProvider requestVariants
+     */
     public function testHttpMethods(string $method, string $endpoint, int $responseCode, ?string $exception): void
     {
         $logger = $this->createMock(LoggerInterface::class);
         $logger->method('debug');
 
-        $client = MockedClientFactory::makeAuthorizedClient($responseCode, '', function (RequestInterface $request) use ($method, $endpoint) {
-            Assert::assertSame(strtoupper($method), strtoupper($request->getMethod()));
-            Assert::assertSame($endpoint, $request->getUri()->getPath());
-        }, $logger);
+        $client = MockedClientFactory::makeAuthorizedClient(
+            $responseCode,
+            '',
+            MockedClientFactory::assertRoute($method, $endpoint),
+            $logger
+        );
 
-        if ($exception) {
+        if ($exception !== null) {
             $this->expectException($exception);
         }
 
         if ($method === 'post') {
+            //@phpstan-ignore-next-line
             $client->{$method}('test', ['foo' => 'bar']);
         } else {
+            //@phpstan-ignore-next-line
             $client->{$method}('test');
         }
     }

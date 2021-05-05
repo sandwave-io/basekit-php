@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace SandaveIo\BaseKit\Domain;
+namespace SandwaveIo\BaseKit\Domain;
 
 interface DomainObjectInterface
 {
@@ -9,6 +9,10 @@ interface DomainObjectInterface
      */
     public function toArray(): array;
 
-    /* @phpstan-ignore-next-line */
+    /**
+     * @param array<mixed> $json
+     *
+     * @return static
+     */
     public static function fromArray(array $json);
 }

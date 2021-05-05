@@ -26,15 +26,15 @@ final class SitesApi extends AbstractApi
             'domain'            => $domain,
         ];
 
-        if ($templateRef) {
+        if ($templateRef !== null) {
             $payload['templateRef'] = $templateRef;
         }
 
-        if ($activationStatus) {
+        if ($activationStatus  !== null) {
             $payload['activationStatus']  = $activationStatus;
         }
 
-        if ($siteType) {
+        if ($siteType  !== null) {
             $payload['siteType'] = $siteType;
         }
 

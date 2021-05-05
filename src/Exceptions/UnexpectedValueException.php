@@ -4,6 +4,6 @@ namespace SandwaveIo\BaseKit\Exceptions;
 
 use UnexpectedValueException as BaseUnexcpectedValueException;
 
-class UnexpectedValueException extends BaseUnexcpectedValueException
+final class UnexpectedValueException extends BaseUnexcpectedValueException
 {
 }

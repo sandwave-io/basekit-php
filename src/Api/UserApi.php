@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\BaseKit\Api;
 
-use SandaveIo\BaseKit\Domain\AccountHolder;
+use SandwaveIo\BaseKit\Domain\AccountHolder;
 
 final class UserApi extends AbstractApi
 {
@@ -17,7 +17,7 @@ final class UserApi extends AbstractApi
      * @param int|null                   $resellerRef
      * @param array<string, string>|null $metaData
      *
-     * @return array<mixed>
+     * @return AccountHolder
      */
     public function create(
         int $brandRef,
@@ -40,11 +40,11 @@ final class UserApi extends AbstractApi
             'languageCode'  => $languageCode,
         ];
 
-        if ($resellerRef) {
+        if ($resellerRef  !== null) {
             $payload['resellerRef'] = $resellerRef;
         }
 
-        if ($metaData) {
+        if ($metaData  !== null) {
             $payload['metadata'] = $metaData;
         }
 
@@ -75,22 +75,22 @@ final class UserApi extends AbstractApi
     ): void {
         $payload = [];
 
-        if ($firstName) {
+        if ($firstName  !== null) {
             $payload['firstName'] = $firstName;
         }
-        if ($lastName) {
+        if ($lastName  !== null) {
             $payload['lastName'] = $lastName;
         }
-        if ($username) {
+        if ($username  !== null) {
             $payload['username'] = $username;
         }
-        if ($password) {
+        if ($password  !== null) {
             $payload['password'] = $password;
         }
-        if ($email) {
+        if ($email  !== null) {
             $payload['email'] = $email;
         }
-        if ($languageCode) {
+        if ($languageCode  !== null) {
             $payload['languageCode'] = $languageCode;
         }
 
