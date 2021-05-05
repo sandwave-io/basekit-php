@@ -3,6 +3,11 @@
 namespace SandwaveIo\BaseKit;
 
 use Psr\Log\LoggerInterface;
+use SandwaveIo\BaseKit\Api\Interfaces\LoginApiInterface;
+use SandwaveIo\BaseKit\Api\Interfaces\PackagesApiInterface;
+use SandwaveIo\BaseKit\Api\Interfaces\SitesApiInterface;
+use SandwaveIo\BaseKit\Api\Interfaces\SslApiInterface;
+use SandwaveIo\BaseKit\Api\Interfaces\UserApiInterface;
 use SandwaveIo\BaseKit\Api\LoginApi;
 use SandwaveIo\BaseKit\Api\PackageApi;
 use SandwaveIo\BaseKit\Api\SitesApi;
@@ -14,11 +19,11 @@ final class BaseKit
 {
     const BASE_URL = 'https://example.com';
 
-    public UserApi $userApi;
-    public LoginApi $loginApi;
-    public SitesApi $sitesApi;
-    public PackageApi $packageApi;
-    public SslApi $sslApi;
+    public UserApiInterface $userApi;
+    public LoginApiInterface $loginApi;
+    public SitesApiInterface $sitesApi;
+    public PackagesApiInterface $packageApi;
+    public SslApiInterface $sslApi;
 
     public function __construct(string $username, string $password, ?string $baseUrl = null, ?LoggerInterface $logger = null)
     {
