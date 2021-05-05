@@ -14,6 +14,8 @@ final class UserApi extends AbstractApi
      * @param string                     $languageCode
      * @param int|null                   $resellerRef
      * @param array<string, string>|null $metaData
+     *
+     * @return array<mixed>
      */
     public function create(
         int $brandRef,
@@ -25,7 +27,7 @@ final class UserApi extends AbstractApi
         string $languageCode,
         ?int $resellerRef = null,
         ?array $metaData = null
-    ): void {
+    ): array {
         $payload = [
             'brandRef'      => $brandRef,
             'firstName'     => $firstName,
@@ -44,7 +46,8 @@ final class UserApi extends AbstractApi
             $payload['metadata'] = $metaData;
         }
 
-        $this->client->post('/users', $payload);
+        $response = $this->client->post('/users', $payload);
+        return $response->json();
     }
 
     /**

@@ -2,37 +2,40 @@
 
 namespace SandwaveIo\BaseKit\Api;
 
-use SandwaveIo\BaseKit\Domain\Enum\ActivationStatusEnum;
-use SandwaveIo\BaseKit\Domain\Enum\SiteTypeEnum;
-
 final class SitesApi extends AbstractApi
 {
     /**
-     * @param int                  $accountHolderRef
-     * @param int                  $brandRef
-     * @param string               $domain
-     * @param ActivationStatusEnum $activationStatus
-     * @param SiteTypeEnum         $siteType
-     * @param int|null             $templateRef
+     * @param int         $accountHolderRef
+     * @param int         $brandRef
+     * @param string      $domain
+     * @param string|null $activationStatus
+     * @param string|null $siteType
+     * @param int|null    $templateRef
      */
     public function create(
         int $accountHolderRef,
         int $brandRef,
         string $domain,
-        ActivationStatusEnum $activationStatus,
-        SiteTypeEnum $siteType,
+        ?string $activationStatus,
+        ?string $siteType,
         ?int $templateRef = null
     ): void {
         $payload = [
             'accountHolderRef'  => $accountHolderRef,
             'brandRef'          => $brandRef,
             'domain'            => $domain,
-            'activationStatus'  => $activationStatus,
-            'siteType'          => $siteType,
         ];
 
         if ($templateRef) {
             $payload['templateRef'] = $templateRef;
+        }
+
+        if ($activationStatus) {
+            $payload['activationStatus']  = $activationStatus;
+        }
+
+        if ($siteType) {
+            $payload['siteType'] = $siteType;
         }
 
         $this->client->post('/sites', $payload);
