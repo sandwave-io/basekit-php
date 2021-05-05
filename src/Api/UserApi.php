@@ -16,6 +16,8 @@ final class UserApi extends AbstractApi
      * @param string                     $languageCode
      * @param int|null                   $resellerRef
      * @param array<string, string>|null $metaData
+     *
+     * @return array<mixed>
      */
     public function create(
         int $brandRef,
