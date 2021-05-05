@@ -25,7 +25,7 @@ final class BaseKitResponse
     }
 
     /**
-     * @return array<mixed>
+     * @return array<string, mixed>
      */
     public function json(): array
     {

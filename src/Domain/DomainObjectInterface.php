@@ -5,12 +5,12 @@ namespace SandwaveIo\BaseKit\Domain;
 interface DomainObjectInterface
 {
     /**
-     * @return array<mixed>
+     * @return array<string, mixed>
      */
     public function toArray(): array;
 
     /**
-     * @param array<mixed> $json
+     * @param array<string, mixed> $json
      *
      * @return static
      */

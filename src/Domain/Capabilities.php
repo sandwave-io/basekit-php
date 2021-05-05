@@ -102,7 +102,7 @@ final class Capabilities implements DomainObjectInterface
     }
 
     /**
-     * @param array<mixed> $json
+     * @param array<string, mixed> $json
      *
      * @return Capabilities
      */
