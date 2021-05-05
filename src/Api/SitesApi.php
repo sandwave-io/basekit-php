@@ -2,7 +2,9 @@
 
 namespace SandwaveIo\BaseKit\Api;
 
-final class SitesApi extends AbstractApi
+use SandwaveIo\BaseKit\Api\Interfaces\SitesApiInterface;
+
+final class SitesApi extends AbstractApi implements SitesApiInterface
 {
     /**
      * @param int         $accountHolderRef

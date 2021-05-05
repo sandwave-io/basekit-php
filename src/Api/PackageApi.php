@@ -2,7 +2,9 @@
 
 namespace SandwaveIo\BaseKit\Api;
 
-final class PackageApi extends AbstractApi
+use SandwaveIo\BaseKit\Api\Interfaces\PackagesApiInterface;
+
+final class PackageApi extends AbstractApi implements PackagesApiInterface
 {
     /**
      * @param int $userRef

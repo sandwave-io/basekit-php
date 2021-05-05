@@ -2,9 +2,10 @@
 
 namespace SandwaveIo\BaseKit\Api;
 
+use SandwaveIo\BaseKit\Api\Interfaces\UserApiInterface;
 use SandwaveIo\BaseKit\Domain\AccountHolder;
 
-final class UserApi extends AbstractApi
+final class UserApi extends AbstractApi implements UserApiInterface
 {
     /**
      * @param int                        $brandRef
