@@ -16,8 +16,8 @@ final class SitesApi extends AbstractApi
         int $accountHolderRef,
         int $brandRef,
         string $domain,
-        ?string $activationStatus,
-        ?string $siteType,
+        ?string $activationStatus = null,
+        ?string $siteType = null,
         ?int $templateRef = null
     ): void {
         $payload = [
@@ -26,15 +26,15 @@ final class SitesApi extends AbstractApi
             'domain'            => $domain,
         ];
 
-        if ($templateRef) {
+        if ($templateRef !== null) {
             $payload['templateRef'] = $templateRef;
         }
 
-        if ($activationStatus) {
+        if ($activationStatus  !== null) {
             $payload['activationStatus']  = $activationStatus;
         }
 
-        if ($siteType) {
+        if ($siteType  !== null) {
             $payload['siteType'] = $siteType;
         }
 

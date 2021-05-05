@@ -22,7 +22,7 @@ final class BaseKit
 
     public function __construct(string $username, string $password, ?string $baseUrl = null, ?LoggerInterface $logger = null)
     {
-        $url = $baseUrl ?: BaseKit::BASE_URL;
+        $url = $baseUrl ?? BaseKit::BASE_URL;
         $this->setClient(new AuthorizedClient($url, $username, $password, [], $logger));
     }
 

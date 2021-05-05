@@ -2,6 +2,6 @@
 
 namespace SandwaveIo\BaseKit\Exceptions;
 
-final class BadRequestException extends BaseKitClientException
+final class BaseKitRequestException extends BaseKitClientException
 {
 }

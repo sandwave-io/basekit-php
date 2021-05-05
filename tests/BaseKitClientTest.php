@@ -11,7 +11,7 @@ use SandwaveIo\BaseKit\Api\SslApi;
 use SandwaveIo\BaseKit\Api\UserApi;
 use SandwaveIo\BaseKit\BaseKit;
 
-class BaseKitClientTest extends TestCase
+final class BaseKitClientTest extends TestCase
 {
     public function testConstruct(): void
     {

@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\BaseKit\Domain\Enum;
 
-class SiteTypeEnum extends AbstractEnum
+final class SiteTypeEnum extends AbstractEnum
 {
     const TYPE_DESKTOP = 'desktop';
     const TYPE_RESPONSIVE = 'responsive';

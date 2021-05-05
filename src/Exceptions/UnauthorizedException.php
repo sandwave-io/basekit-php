@@ -2,6 +2,6 @@
 
 namespace SandwaveIo\BaseKit\Exceptions;
 
-class UnauthorizedException extends BaseKitClientException
+final class UnauthorizedException extends BaseKitClientException
 {
 }

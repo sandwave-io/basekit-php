@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use SandwaveIo\BaseKit\Exceptions\BadRequestException;
-use SandwaveIo\BaseKit\Exceptions\BaseKitClientException;
+use SandwaveIo\BaseKit\Exceptions\BaseKitRequestException;
 use SandwaveIo\BaseKit\Exceptions\ForbiddenException;
 use SandwaveIo\BaseKit\Exceptions\UnauthorizedException;
 
@@ -154,7 +154,7 @@ final class AuthorizedClient
             ]
         );
 
-        switch ($response) {
+        switch (true) {
             case $this->isResponseValid($response, $expectedResponse):
                 return BaseKitResponse::fromString((string) $response->getBody());
             case $response->getStatusCode() === 400:
@@ -166,7 +166,7 @@ final class AuthorizedClient
             case $response->getStatusCode() === 404:
                 throw new BadRequestException('Not Found: ' . $response->getBody());
             default:
-                throw new BaseKitClientException("Unexpected response: (got {$response->getStatusCode()}, expected {$expectedResponse}). Body: " . $response->getBody());
+                throw new BaseKitRequestException("Unexpected response: (got {$response->getStatusCode()}, expected {$expectedResponse}). Body: " . $response->getBody());
         }
     }
 

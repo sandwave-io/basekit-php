@@ -4,6 +4,6 @@ namespace SandwaveIo\BaseKit\Exceptions;
 
 use RuntimeException;
 
-class BaseKitClientException extends RuntimeException
+abstract class BaseKitClientException extends RuntimeException
 {
 }

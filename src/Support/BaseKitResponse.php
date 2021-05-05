@@ -4,7 +4,7 @@ namespace SandwaveIo\BaseKit\Support;
 
 use SandwaveIo\BaseKit\Exceptions\UnexpectedValueException;
 
-class BaseKitResponse
+final class BaseKitResponse
 {
     /** @var string */
     private $response;
@@ -25,13 +25,13 @@ class BaseKitResponse
     }
 
     /**
-     * @return array<mixed>
+     * @return array<string, mixed>
      */
     public function json(): array
     {
         $json = json_decode($this->response, true);
 
-        if (json_last_error() || $json === false) {
+        if (json_last_error() > 0|| $json === false) {
             throw new UnexpectedValueException("Could not parse JSON response body: \n" . $this->response);
         }
 

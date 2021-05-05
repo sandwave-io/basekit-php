@@ -2,7 +2,7 @@
 
 namespace SandwaveIo\BaseKit\Api;
 
-class SslApi extends AbstractApi
+final class SslApi extends AbstractApi
 {
     /**
      * This function will add your supplied ssl certificate to your created website.

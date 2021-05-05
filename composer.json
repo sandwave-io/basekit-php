@@ -20,7 +20,12 @@
         "friendsofphp/php-cs-fixer": "^2.16",
         "phpstan/phpstan": "^0.12.25",
         "phpunit/phpunit": "^9.0",
-        "uptimeproject/php-cs-fixer-config": "^1.0.0"
+        "uptimeproject/php-cs-fixer-config": "^1.0.0",
+        "ekino/phpstan-banned-code": "^0.4.0",
+        "ergebnis/phpstan-rules": "^0.15.3",
+        "phpstan/phpstan-deprecation-rules": "^0.12.6",
+        "phpstan/phpstan-strict-rules": "^0.12.9",
+        "thecodingmachine/phpstan-strict-rules": "^0.12.1"
     },
     "autoload": {
         "psr-4": {
