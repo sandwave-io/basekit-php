@@ -3,6 +3,7 @@
 namespace SandwaveIo\BaseKit\Api;
 
 use SandwaveIo\BaseKit\Api\Interfaces\SitesApiInterface;
+use SandwaveIo\BaseKit\Domain\Site;
 
 final class SitesApi extends AbstractApi implements SitesApiInterface
 {
@@ -13,6 +14,8 @@ final class SitesApi extends AbstractApi implements SitesApiInterface
      * @param string|null $activationStatus
      * @param string|null $siteType
      * @param int|null    $templateRef
+     *
+     * @return Site
      */
     public function create(
         int $accountHolderRef,
@@ -21,7 +24,7 @@ final class SitesApi extends AbstractApi implements SitesApiInterface
         ?string $activationStatus = null,
         ?string $siteType = null,
         ?int $templateRef = null
-    ): void {
+    ): Site {
         $payload = [
             'accountHolderRef'  => $accountHolderRef,
             'brandRef'          => $brandRef,
@@ -40,6 +43,17 @@ final class SitesApi extends AbstractApi implements SitesApiInterface
             $payload['siteType'] = $siteType;
         }
 
-        $this->client->post('/sites', $payload);
+        $response = $this->client->post('/sites', $payload);
+        return Site::fromArray($response->json());
+    }
+
+    public function delete(int $siteRef): void
+    {
+        $this->client->delete("/sites/{$siteRef}");
+    }
+
+    public function hardDelete(int $siteRef): void
+    {
+        $this->client->post("/sites/{$siteRef}/hard-delete");
     }
 }
