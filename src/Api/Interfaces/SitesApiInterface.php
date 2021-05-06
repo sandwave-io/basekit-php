@@ -2,6 +2,8 @@
 
 namespace SandwaveIo\BaseKit\Api\Interfaces;
 
+use SandwaveIo\BaseKit\Domain\Site;
+
 interface SitesApiInterface
 {
     public function create(
@@ -11,5 +13,9 @@ interface SitesApiInterface
         ?string $activationStatus = null,
         ?string $siteType = null,
         ?int $templateRef = null
-    ): void;
+    ): Site;
+
+    public function delete(int $siteRef): void;
+
+    public function hardDelete(int $siteRef): void;
 }
