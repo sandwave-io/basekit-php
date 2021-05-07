@@ -20,5 +20,6 @@ final class CreateTest extends TestCase
         $accountHolder = $client->userApi->create(1, 'Test', 'Kees', 'testkees', 'Welkom123', 'test.kees@sandwave.io', 'NL');
         Assert::assertInstanceOf(AccountHolder::class, $accountHolder);
         Assert::assertSame('Kees', $accountHolder->lastName);
+        Assert::assertIsArray($accountHolder->toArray());
     }
 }

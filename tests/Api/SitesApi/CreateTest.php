@@ -20,5 +20,6 @@ final class CreateTest extends TestCase
         $site = $client->sitesApi->create(1, 1, 'example.com');
         Assert::assertInstanceOf(Site::class, $site);
         Assert::assertSame('example.com', $site->primaryDomain->domainName);
+        Assert::assertIsArray($site->toArray());
     }
 }
