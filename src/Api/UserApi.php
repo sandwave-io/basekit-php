@@ -4,6 +4,7 @@ namespace SandwaveIo\BaseKit\Api;
 
 use SandwaveIo\BaseKit\Api\Interfaces\UserApiInterface;
 use SandwaveIo\BaseKit\Domain\AccountHolder;
+use SandwaveIo\BaseKit\Exceptions\UnexpectedValueException;
 
 final class UserApi extends AbstractApi implements UserApiInterface
 {
@@ -49,8 +50,11 @@ final class UserApi extends AbstractApi implements UserApiInterface
             $payload['metadata'] = $metaData;
         }
 
-        $response = $this->client->post('/users', $payload);
-        return AccountHolder::fromArray($response->json());
+        $response = $this->client->post('/users', $payload)->json();
+        if (! array_key_exists('accountHolder', $response)) {
+            throw new UnexpectedValueException('No account holder was provided by BaseKit.');
+        }
+        return AccountHolder::fromArray($response['accountHolder']);
     }
 
     /**
