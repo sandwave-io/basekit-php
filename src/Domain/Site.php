@@ -12,7 +12,7 @@ final class Site implements DomainObjectInterface
     public ?string $contentMapSite;
     public ?int $template;
     public Domain $primaryDomain;
-    public DateTime $lastPublished;
+    public ?DateTime $lastPublish;
     public int $brandRef;
     public string $version;
     public bool $enabled;
@@ -29,7 +29,7 @@ final class Site implements DomainObjectInterface
      * @param string|null $contentMapSite
      * @param int|null    $template
      * @param Domain      $primaryDomain
-     * @param DateTime    $lastPublished
+     * @param ?DateTime   $lastPublish
      * @param int         $brandRef
      * @param string      $version
      * @param bool        $enabled
@@ -38,14 +38,14 @@ final class Site implements DomainObjectInterface
      * @param bool        $mobile
      * @param int|null    $profileRef
      */
-    public function __construct(int $ref, array $domains, ?string $contentMapSite, ?int $template, Domain $primaryDomain, DateTime $lastPublished, int $brandRef, string $version, bool $enabled, ?bool $privateWidgets, ?int $mobileSiteRef, bool $mobile, ?int $profileRef)
+    public function __construct(int $ref, array $domains, ?string $contentMapSite, ?int $template, Domain $primaryDomain, ?DateTime $lastPublish, int $brandRef, string $version, bool $enabled, ?bool $privateWidgets, ?int $mobileSiteRef, bool $mobile, ?int $profileRef)
     {
         $this->ref = $ref;
         $this->domains = $domains;
         $this->contentMapSite = $contentMapSite;
         $this->template = $template;
         $this->primaryDomain = $primaryDomain;
-        $this->lastPublished = $lastPublished;
+        $this->lastPublish = $lastPublish;
         $this->brandRef = $brandRef;
         $this->version = $version;
         $this->enabled = $enabled;
@@ -66,7 +66,7 @@ final class Site implements DomainObjectInterface
             'contentMapSite' => $this->contentMapSite,
             'template' => $this->template,
             'primaryDomain' => $this->primaryDomain,
-            'lastPublished' => $this->lastPublished,
+            'lastPublish' => $this->lastPublish,
             'brandRef' => $this->brandRef,
             'version' => $this->version,
             'enabled' => $this->enabled,
@@ -82,21 +82,20 @@ final class Site implements DomainObjectInterface
      */
     public static function fromArray(array $json)
     {
-        $site = $json['site'];
         return new Site(
-            $site['ref'],
-            array_map(fn (array $domain): Domain => Domain::fromArray($domain), $site['domains']),
-            $site['contentMapSite'] ?? null,
-            $site['template'] ?? null,
-            $site['primaryDomain'],
-            $site['lastPublished'],
-            $site['brandRef'],
-            $site['version'],
-            $site['enabled'],
-            $site['privateWidgets'] ?? null,
-            $site['mobileSiteRef'] ?? null,
-            $site['mobile'],
-            $site['profileRef'] ?? null,
+            $json['ref'],
+            array_map(fn (array $domain): Domain => Domain::fromArray($domain), $json['domains']),
+            $json['contentMapSite'] ?? null,
+            $json['template'] ?? null,
+            Domain::fromArray($json['primaryDomain']),
+            $json['lastPublish'],
+            $json['brandRef'],
+            $json['version'],
+            $json['enabled'],
+            $json['privateWidgets'] ?? null,
+            $json['mobileSiteRef'] ?? null,
+            $json['mobile'],
+            $json['profileRef'] ?? null,
         );
     }
 }

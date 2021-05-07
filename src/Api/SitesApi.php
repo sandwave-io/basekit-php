@@ -4,6 +4,7 @@ namespace SandwaveIo\BaseKit\Api;
 
 use SandwaveIo\BaseKit\Api\Interfaces\SitesApiInterface;
 use SandwaveIo\BaseKit\Domain\Site;
+use SandwaveIo\BaseKit\Exceptions\UnexpectedValueException;
 
 final class SitesApi extends AbstractApi implements SitesApiInterface
 {
@@ -43,8 +44,11 @@ final class SitesApi extends AbstractApi implements SitesApiInterface
             $payload['siteType'] = $siteType;
         }
 
-        $response = $this->client->post('/sites', $payload);
-        return Site::fromArray($response->json());
+        $response = $this->client->post('/sites', $payload)->json();
+        if (! array_key_exists('site', $response)) {
+            throw new UnexpectedValueException('No site was provided by BaseKit.');
+        }
+        return Site::fromArray($response['site']);
     }
 
     public function delete(int $siteRef): void
