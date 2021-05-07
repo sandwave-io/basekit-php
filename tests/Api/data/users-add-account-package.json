@@ -1,0 +1,18 @@
+{
+    "capabilities":
+    {
+        "allowUsers":"1",
+        "cdnEnabled":"0",
+        "cssEditing":"1",
+        "domainMapping":"1",
+        "ecommerceAllowed":"0",
+        "freeDomains":"0",
+        "googleAdWordVoucher":"0",
+        "googleAnalytics":"1",
+        "htmlEditing":"1",
+        "liveSites":"5",
+        "pagesLimited":"9999999",
+        "storageLimit":"1073741824",
+        "themeLevel":"1"
+    }
+}
