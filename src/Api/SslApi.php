@@ -27,11 +27,11 @@ final class SslApi extends AbstractApi implements SslApiInterface
             'cert' => $certificate,
         ];
 
-        if (count($domains) > 1) {
+        if (count($domains) > 0) {
             $payload['domains'] = $domains;
         }
 
-        if (count($intermediates) > 1) {
+        if (count($intermediates) > 0) {
             $payload['intermediates'] = $intermediates;
         }
 

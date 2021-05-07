@@ -21,4 +21,5 @@ parameters:
         - '#Constructor in [a-zA-Z0-9\\_]+ has parameter \$[a-zA-Z0-9\\_]+ with default value.#'
         - '#Method [a-zA-Z0-9\\_]+::[a-zA-Z0-9\\_]+\(\) has parameter \$[a-zA-Z0-9\\_]+ with null as default value.#'
         - '#Method [a-zA-Z0-9\\_]+::[a-zA-Z0-9\\_]+\(\) has parameter \$[a-zA-Z0-9\\_]+ with a nullable type declaration.#'
-        - '#Method [a-zA-Z0-9\\_]+::[a-zA-Z0-9\\_]+\(\) is not final, but since the containing class is abstract, it should be.#'
+#       Not necessary at the moment, but keeping it for later.
+#        - '#Method [a-zA-Z0-9\\_]+::[a-zA-Z0-9\\_]+\(\) is not final, but since the containing class is abstract, it should be.#'
