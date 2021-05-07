@@ -19,6 +19,6 @@ final class AddSslTest extends TestCase
             MockedClientFactory::assertRoute('PUT', '/ssl-certs/example.com')
         );
 
-        $client->sslApi->addSsl('example.com', self::KEY, self::CERT, self::DOMAINS);
+        $client->sslApi->addSsl('example.com', self::KEY, self::CERT, self::DOMAINS, [self::CERT]);
     }
 }

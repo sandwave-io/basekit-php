@@ -15,6 +15,6 @@ final class UpdateTest extends TestCase
             MockedClientFactory::assertRoute('PUT', '/users/123')
         );
 
-        $client->userApi->update(123, 'Henk');
+        $client->userApi->update(123, 'Henk', 'Peter', 'henkpeter', 'Welkom12345', 'henkpeter@sandwave.io', 'BE');
     }
 }
