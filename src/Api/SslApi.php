@@ -35,6 +35,6 @@ final class SslApi extends AbstractApi implements SslApiInterface
             $payload['intermediates'] = $intermediates;
         }
 
-        $this->client->post("/ssl-certs/{$domain}", $payload);
+        $this->client->put("/ssl-certs/{$domain}", $payload);
     }
 }
