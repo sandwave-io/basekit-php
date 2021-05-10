@@ -22,36 +22,36 @@ final class Capabilities implements DomainObjectInterface
     public string $allowTemplateSave;
     public string $mailboxes;
     public string $mobile;
-    public string $siteLock;
+    public ?string $siteLock;
     public string $mobileSites;
-    public int $mobilePublishing;
+    public string $mobilePublishing;
     public string $restrictPagesOnPublish;
 
     /**
      * Capabilities constructor.
      *
-     * @param string $liveSites
-     * @param string $allowUsers
-     * @param string $cdnEnabled
-     * @param string $cssEditing
-     * @param string $themeLevel
-     * @param string $freeDomains
-     * @param string $htmlEditing
-     * @param string $pagesLimited
-     * @param string $storageLimit
-     * @param string $templateTier
-     * @param string $domainMapping
-     * @param string $googleAnalytics
-     * @param string $ecommerceAllowed
-     * @param string $googleAdWordVoucher
-     * @param string $allowExternalRedirects
-     * @param string $allowTemplateSave
-     * @param string $mailboxes
-     * @param string $mobile
-     * @param string $siteLock
-     * @param string $mobileSites
-     * @param int    $mobilePublishing
-     * @param string $restrictPagesOnPublish
+     * @param string      $liveSites
+     * @param string      $allowUsers
+     * @param string      $cdnEnabled
+     * @param string      $cssEditing
+     * @param string      $themeLevel
+     * @param string      $freeDomains
+     * @param string      $htmlEditing
+     * @param string      $pagesLimited
+     * @param string      $storageLimit
+     * @param string      $templateTier
+     * @param string      $domainMapping
+     * @param string      $googleAnalytics
+     * @param string      $ecommerceAllowed
+     * @param string      $googleAdWordVoucher
+     * @param string      $allowExternalRedirects
+     * @param string      $allowTemplateSave
+     * @param string      $mailboxes
+     * @param string      $mobile
+     * @param string|null $siteLock
+     * @param string      $mobileSites
+     * @param string      $mobilePublishing
+     * @param string      $restrictPagesOnPublish
      */
     public function __construct(
         string $liveSites,
@@ -72,9 +72,9 @@ final class Capabilities implements DomainObjectInterface
         string $allowTemplateSave,
         string $mailboxes,
         string $mobile,
-        string $siteLock,
+        ?string $siteLock,
         string $mobileSites,
-        int $mobilePublishing,
+        string $mobilePublishing,
         string $restrictPagesOnPublish
     ) {
         $this->liveSites = $liveSites;
@@ -102,7 +102,7 @@ final class Capabilities implements DomainObjectInterface
     }
 
     /**
-     * @param array<string, mixed> $json
+     * @param array<string,mixed> $json
      *
      * @return Capabilities
      */
@@ -127,7 +127,7 @@ final class Capabilities implements DomainObjectInterface
             $json['allowTemplateSave'],
             $json['mailboxes'],
             $json['mobile'],
-            $json['siteLock'],
+            $json['siteLock'] ?? null,
             $json['mobileSites'],
             $json['mobilePublishing'],
             $json['restrictPagesOnPublish'],

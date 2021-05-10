@@ -38,9 +38,8 @@
             "allowTemplateSave": "0",
             "mailboxes": "0",
             "mobile": "0",
-            "siteLock": "0",
             "mobileSites": "0",
-            "mobilePublishing": 0,
+            "mobilePublishing": "0",
             "restrictPagesOnPublish": "0"
         },
         "accountPaymentMethodRef": null,

@@ -14,7 +14,7 @@ final class Site implements DomainObjectInterface
     public Domain $primaryDomain;
     public ?DateTime $lastPublish;
     public int $brandRef;
-    public string $version;
+    public int $version;
     public bool $enabled;
     public ?bool $privateWidgets;
     public ?int $mobileSiteRef;
@@ -31,14 +31,14 @@ final class Site implements DomainObjectInterface
      * @param Domain      $primaryDomain
      * @param ?DateTime   $lastPublish
      * @param int         $brandRef
-     * @param string      $version
+     * @param int         $version
      * @param bool        $enabled
      * @param bool|null   $privateWidgets
      * @param int|null    $mobileSiteRef
      * @param bool        $mobile
      * @param int|null    $profileRef
      */
-    public function __construct(int $ref, array $domains, ?string $contentMapSite, ?int $template, Domain $primaryDomain, ?DateTime $lastPublish, int $brandRef, string $version, bool $enabled, ?bool $privateWidgets, ?int $mobileSiteRef, bool $mobile, ?int $profileRef)
+    public function __construct(int $ref, array $domains, ?string $contentMapSite, ?int $template, Domain $primaryDomain, ?DateTime $lastPublish, int $brandRef, int $version, bool $enabled, ?bool $privateWidgets, ?int $mobileSiteRef, bool $mobile, ?int $profileRef)
     {
         $this->ref = $ref;
         $this->domains = $domains;
