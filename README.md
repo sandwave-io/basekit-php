@@ -2,7 +2,7 @@
 
 # BaseKit RESTful API - PHP SDK
 
-[![codecov](https://codecov.io/gh/sandwave-io/basekit-php/branch/main/graph/badge.svg?token=yRUvGBQQap)](https://codecov.io/gh/sandwave-io/basekit-php)
+[![Codecov](https://codecov.io/gh/sandwave-io/basekit-php/branch/main/graph/badge.svg?token=yRUvGBQQap)](https://codecov.io/gh/sandwave-io/basekit-php)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/sandwave-io/basekit-php/CI)](https://packagist.org/packages/sandwave-io/basekit-php)
 [![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/sandwave-io/basekit-php)](https://packagist.org/packages/sandwave-io/basekit-php)
 [![Packagist PHP Version Support](https://img.shields.io/packagist/v/sandwave-io/basekit-php)](https://packagist.org/packages/sandwave-io/basekit-php)
