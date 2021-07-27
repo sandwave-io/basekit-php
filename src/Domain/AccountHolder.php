@@ -5,30 +5,55 @@ namespace SandwaveIo\BaseKit\Domain;
 final class AccountHolder implements DomainObjectInterface
 {
     public int $ref;
+
     public string $firstName;
+
     public string $lastName;
+
     public string $username;
+
     public string $email;
+
     public int $suspended;
+
     public bool $beta;
+
     public string $languageCode;
+
     public ?int $phoneNumber;
+
     public ?string $address1;
+
     public ?string $address2;
+
     public ?string $city;
+
     public ?string $postcode;
+
     public ?string $country;
+
     public int $newsletter;
+
     public int $currencyRef;
+
     public ?string $state;
+
     public Capabilities $capabilities;
+
     public ?int  $accountPaymentMethodRef;
+
     public ?int $cpfNumber;
+
     public int $cpfCompany;
+
     public bool $deleted;
+
     public int $storageBytesUsed;
+
     public ?string $created;
+
     public ?string $lastLogin;
+
     public string $accountStatus;
 
     /**

@@ -20,9 +20,13 @@ final class BaseKit
     const BASE_URL = 'https://example.com';
 
     public UserApiInterface $userApi;
+
     public LoginApiInterface $loginApi;
+
     public SitesApiInterface $sitesApi;
+
     public PackagesApiInterface $packageApi;
+
     public SslApiInterface $sslApi;
 
     public function __construct(string $username, string $password, ?string $baseUrl = null, ?LoggerInterface $logger = null)
