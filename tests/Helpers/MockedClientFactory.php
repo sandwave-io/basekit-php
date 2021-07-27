@@ -14,7 +14,9 @@ use SandwaveIo\BaseKit\Support\AuthorizedClient;
 final class MockedClientFactory
 {
     const USERNAME = 'test';
+
     const PASSWORD = 'bigseretdonttellanyone';
+
     const BASE_URL = 'https://example.com';
 
     public static function assertRoute(string $method, string $route): callable

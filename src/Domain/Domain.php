@@ -5,6 +5,7 @@ namespace SandwaveIo\BaseKit\Domain;
 final class Domain implements DomainObjectInterface
 {
     public int $ref;
+
     public string $domainName;
 
     /**

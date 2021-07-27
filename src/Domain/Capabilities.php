@@ -5,26 +5,47 @@ namespace SandwaveIo\BaseKit\Domain;
 final class Capabilities implements DomainObjectInterface
 {
     public string $liveSites;
+
     public string $allowUsers;
+
     public string $cdnEnabled;
+
     public string $cssEditing;
+
     public string $themeLevel;
+
     public string $freeDomains;
+
     public string $htmlEditing;
+
     public string $pagesLimited;
+
     public string $storageLimit;
+
     public string $templateTier;
+
     public string $domainMapping;
+
     public string $googleAnalytics;
+
     public string $ecommerceAllowed;
+
     public string $googleAdWordVoucher;
+
     public string $allowExternalRedirects;
+
     public string $allowTemplateSave;
+
     public string $mailboxes;
+
     public string $mobile;
+
     public ?string $siteLock;
+
     public string $mobileSites;
+
     public string $mobilePublishing;
+
     public string $restrictPagesOnPublish;
 
     /**

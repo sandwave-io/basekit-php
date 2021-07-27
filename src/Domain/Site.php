@@ -7,18 +7,30 @@ use DateTime;
 final class Site implements DomainObjectInterface
 {
     public int $ref;
+
     /** @var Domain[] */
     public array $domains;
+
     public ?string $contentMapSite;
+
     public ?int $template;
+
     public Domain $primaryDomain;
+
     public ?DateTime $lastPublish;
+
     public int $brandRef;
+
     public int $version;
+
     public bool $enabled;
+
     public ?bool $privateWidgets;
+
     public ?int $mobileSiteRef;
+
     public bool $mobile;
+
     public ?int $profileRef;
 
     /**
