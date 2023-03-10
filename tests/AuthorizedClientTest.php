@@ -22,6 +22,7 @@ final class AuthorizedClientTest extends TestCase
 
     /**
      * @psalm-param class-string<\Throwable>|null $exception
+     *
      * @dataProvider requestVariants
      */
     public function testHttpMethods(string $method, string $endpoint, int $responseCode, ?string $exception): void
@@ -50,9 +51,9 @@ final class AuthorizedClientTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array<mixed>>
      */
-    public function requestVariants(): array
+    public static function requestVariants(): array
     {
         return [
             'GET request: success'  => ['get', '/test', 200, null],
