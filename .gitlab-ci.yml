@@ -6,4 +6,4 @@
 include:
   - project: sandwave/infra
     ref: $INFRA_PIPELINE_REF
-    file: .gitlab/ci/common/php-packages-general.yml
+    file: .gitlab/ci/common/basekit-php-ci.yml
