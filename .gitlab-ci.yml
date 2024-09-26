@@ -5,5 +5,5 @@
 
 include:
   - project: sandwave/infra
-    ref: $INFRA_PIPELINE_REF
+    ref: INFRA-183-ci-build-publish
     file: .gitlab/ci/basekit-php-ci.yml
