@@ -1,0 +1,28 @@
+{
+  "site":
+  {
+    "ref":1,
+    "domains":
+    [
+      {
+        "ref":1,
+        "domainName":"example.com"
+      }
+    ],
+    "contentMapSite":null,
+    "template":null,
+    "primaryDomain":
+    {
+      "ref":1,
+      "domainName":"example.com"
+    },
+    "lastPublish":null,
+    "brandRef":1,
+    "version": 69,
+    "enabled":true,
+    "privateWidgets":null,
+    "mobileSiteRef":null,
+    "mobile":false,
+    "profileRef":null
+  }
+}

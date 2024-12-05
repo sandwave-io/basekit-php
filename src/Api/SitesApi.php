@@ -51,6 +51,17 @@ final class SitesApi extends AbstractApi implements SitesApiInterface
         return Site::fromArray($response['site']);
     }
 
+    public function get(int $siteRef): Site
+    {
+        $response = $this->client->get("/sites/{$siteRef}")->json();
+
+        if (! array_key_exists('site', $response)) {
+            throw new UnexpectedValueException('No site was provided by BaseKit.');
+        }
+
+        return Site::fromArray($response['site']);
+    }
+
     public function delete(int $siteRef): void
     {
         $this->client->delete("/sites/{$siteRef}");
