@@ -173,7 +173,7 @@ final class AccountHolder implements DomainObjectInterface
             $json['cpfNumber']?? null,
             $json['cpfCompany'],
             $json['deleted'],
-            $json['storageBytesUsed'],
+            (int) $json['storageBytesUsed'],
             $json['created']?? null,
             $json['lastLogin']?? null,
             $json['accountStatus'],

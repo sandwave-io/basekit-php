@@ -47,7 +47,7 @@
         "cpfCompany": 0,
         "company": "",
         "deleted": false,
-        "storageBytesUsed": 0,
+        "storageBytesUsed": "1234",
         "created": null,
         "lastLogin": null,
         "accountStatus": "allowed"

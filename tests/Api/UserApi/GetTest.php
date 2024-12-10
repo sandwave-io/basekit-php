@@ -10,7 +10,7 @@ use SandwaveIo\BaseKit\Tests\Helpers\MockedClientFactory;
 
 final class GetTest extends TestCase
 {
-    public function testCreate(): void
+    public function testGet(): void
     {
         $client = MockedClientFactory::makeSdk(
             200,
@@ -21,10 +21,11 @@ final class GetTest extends TestCase
         $accountHolder = $client->userApi->get(1);
         Assert::assertInstanceOf(AccountHolder::class, $accountHolder);
         Assert::assertSame('Kees', $accountHolder->lastName);
+        Assert::assertSame(1234, $accountHolder->storageBytesUsed);
         Assert::assertIsArray($accountHolder->toArray());
     }
 
-    public function testCreateWithInvalidResponse(): void
+    public function testGetWithInvalidResponse(): void
     {
         $client = MockedClientFactory::makeSdk(
             200,
