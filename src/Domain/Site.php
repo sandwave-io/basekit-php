@@ -94,9 +94,17 @@ final class Site implements DomainObjectInterface
      */
     public static function fromArray(array $json)
     {
+        $domains = [];
+
+        foreach ($json['domains'] as $id => $domain) {
+            $domains[] = is_string($domain) ?
+                new Domain($id, $domain) :
+                Domain::fromArray($domain);
+        }
+
         return new Site(
             $json['ref'],
-            array_map(fn (array $domain): Domain => Domain::fromArray($domain), $json['domains']),
+            $domains,
             $json['contentMapSite'] ?? null,
             $json['template'] ?? null,
             Domain::fromArray($json['primaryDomain']),

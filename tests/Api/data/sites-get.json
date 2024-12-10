@@ -2,13 +2,9 @@
   "site":
   {
     "ref":1,
-    "domains":
-    [
-      {
-        "ref":1,
-        "domainName":"example.com"
-      }
-    ],
+    "domains": {
+      "123": "example.com"
+    },
     "contentMapSite":null,
     "template":null,
     "primaryDomain":
