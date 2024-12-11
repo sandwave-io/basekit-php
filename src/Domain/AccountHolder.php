@@ -42,7 +42,7 @@ final class AccountHolder implements DomainObjectInterface
 
     public ?int  $accountPaymentMethodRef;
 
-    public ?int $cpfNumber;
+    public ?string $cpfNumber;
 
     public int $cpfCompany;
 
@@ -79,7 +79,7 @@ final class AccountHolder implements DomainObjectInterface
      * @param string|null       $state
      * @param Capabilities      $capabilities
      * @param int|null          $accountPaymentMethodRef
-     * @param int|null          $cpfNumber
+     * @param string|null       $cpfNumber
      * @param int               $cpfCompany
      * @param bool              $deleted
      * @param int               $storageBytesUsed
@@ -107,7 +107,7 @@ final class AccountHolder implements DomainObjectInterface
         ?string $state,
         Capabilities $capabilities,
         ?int $accountPaymentMethodRef,
-        ?int $cpfNumber,
+        ?string $cpfNumber,
         int $cpfCompany,
         bool $deleted,
         int $storageBytesUsed,
