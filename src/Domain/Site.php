@@ -2,8 +2,6 @@
 
 namespace SandwaveIo\BaseKit\Domain;
 
-use DateTime;
-
 final class Site implements DomainObjectInterface
 {
     public int $ref;
@@ -17,7 +15,8 @@ final class Site implements DomainObjectInterface
 
     public Domain $primaryDomain;
 
-    public ?DateTime $lastPublish;
+    /** @var array<string, string|int>|null */
+    public ?array $lastPublish;
 
     public int $brandRef;
 
@@ -36,21 +35,21 @@ final class Site implements DomainObjectInterface
     /**
      * Site constructor.
      *
-     * @param int         $ref
-     * @param Domain[]    $domains
-     * @param int|null    $contentMapSite
-     * @param int|null    $template
-     * @param Domain      $primaryDomain
-     * @param ?DateTime   $lastPublish
-     * @param int         $brandRef
-     * @param int         $version
-     * @param bool        $enabled
-     * @param bool|null   $privateWidgets
-     * @param int|null    $mobileSiteRef
-     * @param bool        $mobile
-     * @param int|null    $profileRef
+     * @param int                        $ref
+     * @param Domain[]                   $domains
+     * @param int|null                   $contentMapSite
+     * @param int|null                   $template
+     * @param Domain                     $primaryDomain
+     * @param ?array<string, string|int> $lastPublish
+     * @param int                        $brandRef
+     * @param int                        $version
+     * @param bool                       $enabled
+     * @param bool|null                  $privateWidgets
+     * @param int|null                   $mobileSiteRef
+     * @param bool                       $mobile
+     * @param int|null                   $profileRef
      */
-    public function __construct(int $ref, array $domains, ?int $contentMapSite, ?int $template, Domain $primaryDomain, ?DateTime $lastPublish, int $brandRef, int $version, bool $enabled, ?bool $privateWidgets, ?int $mobileSiteRef, bool $mobile, ?int $profileRef)
+    public function __construct(int $ref, array $domains, ?int $contentMapSite, ?int $template, Domain $primaryDomain, ?array $lastPublish, int $brandRef, int $version, bool $enabled, ?bool $privateWidgets, ?int $mobileSiteRef, bool $mobile, ?int $profileRef)
     {
         $this->ref = $ref;
         $this->domains = $domains;
