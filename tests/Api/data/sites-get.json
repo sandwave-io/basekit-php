@@ -25,7 +25,7 @@
     "brandRef":1,
     "version": 69,
     "enabled":true,
-    "privateWidgets":null,
+    "privateWidgets":1,
     "mobileSiteRef":null,
     "mobile":false,
     "profileRef":null
