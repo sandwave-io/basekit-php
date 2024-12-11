@@ -111,7 +111,7 @@ final class Site implements DomainObjectInterface
             $json['brandRef'],
             $json['version'],
             $json['enabled'],
-            is_numeric($json['privateWidgets']) ? (boolean) $json['privateWidgets'] : null,
+            is_numeric($json['privateWidgets']) ? (bool) $json['privateWidgets'] : null,
             $json['mobileSiteRef'] ?? null,
             $json['mobile'],
             $json['profileRef'] ?? null,
