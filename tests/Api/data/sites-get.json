@@ -5,7 +5,7 @@
     "domains": {
       "123": "example.com"
     },
-    "contentMapSite":null,
+    "contentMapSite":123,
     "template":null,
     "primaryDomain":
     {

@@ -11,7 +11,7 @@ final class Site implements DomainObjectInterface
     /** @var Domain[] */
     public array $domains;
 
-    public ?string $contentMapSite;
+    public ?int $contentMapSite;
 
     public ?int $template;
 
@@ -38,7 +38,7 @@ final class Site implements DomainObjectInterface
      *
      * @param int         $ref
      * @param Domain[]    $domains
-     * @param string|null $contentMapSite
+     * @param int|null    $contentMapSite
      * @param int|null    $template
      * @param Domain      $primaryDomain
      * @param ?DateTime   $lastPublish
@@ -50,7 +50,7 @@ final class Site implements DomainObjectInterface
      * @param bool        $mobile
      * @param int|null    $profileRef
      */
-    public function __construct(int $ref, array $domains, ?string $contentMapSite, ?int $template, Domain $primaryDomain, ?DateTime $lastPublish, int $brandRef, int $version, bool $enabled, ?bool $privateWidgets, ?int $mobileSiteRef, bool $mobile, ?int $profileRef)
+    public function __construct(int $ref, array $domains, ?int $contentMapSite, ?int $template, Domain $primaryDomain, ?DateTime $lastPublish, int $brandRef, int $version, bool $enabled, ?bool $privateWidgets, ?int $mobileSiteRef, bool $mobile, ?int $profileRef)
     {
         $this->ref = $ref;
         $this->domains = $domains;
