@@ -20,7 +20,7 @@ final class AccountHolder implements DomainObjectInterface
 
     public string $languageCode;
 
-    public ?int $phoneNumber;
+    public ?string $phoneNumber;
 
     public ?string $address1;
 
@@ -68,7 +68,7 @@ final class AccountHolder implements DomainObjectInterface
      * @param int               $suspended
      * @param bool              $beta
      * @param string            $languageCode
-     * @param int|null          $phoneNumber
+     * @param string|null       $phoneNumber
      * @param string|null       $address1
      * @param string|null       $address2
      * @param string|null       $city
@@ -96,7 +96,7 @@ final class AccountHolder implements DomainObjectInterface
         int $suspended,
         bool $beta,
         string $languageCode,
-        ?int $phoneNumber,
+        ?string $phoneNumber,
         ?string $address1,
         ?string $address2,
         ?string $city,
