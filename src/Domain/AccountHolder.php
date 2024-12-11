@@ -53,39 +53,40 @@ final class AccountHolder implements DomainObjectInterface
     /** @var array<mixed>|null */
     public ?array $created;
 
-    public ?string $lastLogin;
+    /** @var array<string, string|int>|null  */
+    public ?array $lastLogin;
 
     public string $accountStatus;
 
     /**
      * AccountHolder constructor.
      *
-     * @param int               $ref
-     * @param string            $firstName
-     * @param string            $lastName
-     * @param string            $username
-     * @param string            $email
-     * @param int               $suspended
-     * @param bool              $beta
-     * @param string            $languageCode
-     * @param string|null       $phoneNumber
-     * @param string|null       $address1
-     * @param string|null       $address2
-     * @param string|null       $city
-     * @param string|null       $postcode
-     * @param string|null       $country
-     * @param int               $newsletter
-     * @param int               $currencyRef
-     * @param string|null       $state
-     * @param Capabilities      $capabilities
-     * @param int|null          $accountPaymentMethodRef
-     * @param string|null       $cpfNumber
-     * @param int               $cpfCompany
-     * @param bool              $deleted
-     * @param int               $storageBytesUsed
-     * @param array<mixed>|null $created
-     * @param string|null       $lastLogin
-     * @param string            $accountStatus
+     * @param int                               $ref
+     * @param string                            $firstName
+     * @param string                            $lastName
+     * @param string                            $username
+     * @param string                            $email
+     * @param int                               $suspended
+     * @param bool                              $beta
+     * @param string                            $languageCode
+     * @param string|null                       $phoneNumber
+     * @param string|null                       $address1
+     * @param string|null                       $address2
+     * @param string|null                       $city
+     * @param string|null                       $postcode
+     * @param string|null                       $country
+     * @param int                               $newsletter
+     * @param int                               $currencyRef
+     * @param string|null                       $state
+     * @param Capabilities                      $capabilities
+     * @param int|null                          $accountPaymentMethodRef
+     * @param string|null                       $cpfNumber
+     * @param int                               $cpfCompany
+     * @param bool                              $deleted
+     * @param int                               $storageBytesUsed
+     * @param array<mixed>|null                 $created
+     * @param array<string, string|int>|null    $lastLogin
+     * @param string                            $accountStatus
      */
     public function __construct(
         int $ref,
@@ -112,7 +113,7 @@ final class AccountHolder implements DomainObjectInterface
         bool $deleted,
         int $storageBytesUsed,
         ?array $created,
-        ?string $lastLogin,
+        ?array $lastLogin,
         string $accountStatus
     ) {
         $this->ref = $ref;
