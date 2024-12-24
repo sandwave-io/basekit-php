@@ -22,6 +22,7 @@ final class GetTest extends TestCase
         Assert::assertInstanceOf(AccountHolder::class, $accountHolder);
         Assert::assertSame('Kees', $accountHolder->lastName);
         Assert::assertSame(1234, $accountHolder->storageBytesUsed);
+        Assert::assertSame(789, $accountHolder->resellerRef);
         Assert::assertIsArray($accountHolder->toArray());
     }
 

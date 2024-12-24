@@ -50,6 +50,7 @@
         "storageBytesUsed": "1234",
         "created": null,
         "lastLogin": null,
-        "accountStatus": "allowed"
+        "accountStatus": "allowed",
+        "resellerRef": 789
     }
 }

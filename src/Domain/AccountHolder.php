@@ -58,6 +58,8 @@ final class AccountHolder implements DomainObjectInterface
 
     public string $accountStatus;
 
+    public ?int $resellerRef;
+
     /**
      * AccountHolder constructor.
      *
@@ -87,6 +89,7 @@ final class AccountHolder implements DomainObjectInterface
      * @param array<mixed>|null              $created
      * @param array<string, string|int>|null $lastLogin
      * @param string                         $accountStatus
+     * @param int|null                       $resellerRef
      */
     public function __construct(
         int $ref,
@@ -114,7 +117,8 @@ final class AccountHolder implements DomainObjectInterface
         int $storageBytesUsed,
         ?array $created,
         ?array $lastLogin,
-        string $accountStatus
+        string $accountStatus,
+        ?int $resellerRef,
     ) {
         $this->ref = $ref;
         $this->firstName = $firstName;
@@ -142,6 +146,7 @@ final class AccountHolder implements DomainObjectInterface
         $this->created = $created;
         $this->lastLogin = $lastLogin;
         $this->accountStatus = $accountStatus;
+        $this->resellerRef = $resellerRef;
     }
 
     /**
@@ -164,20 +169,21 @@ final class AccountHolder implements DomainObjectInterface
             $json['address1'] ??  null,
             $json['address2'] ?? null,
             $json['city']?? null,
-            $json['postcode']?? null,
-            $json['country']?? null,
+            $json['postcode'] ?? null,
+            $json['country'] ?? null,
             $json['newsletter'],
             $json['currencyRef'],
-            $json['state']?? null,
+            $json['state'] ?? null,
             Capabilities::fromArray($json['capabilities']),
-            $json['accountPaymentMethodRef']?? null,
-            $json['cpfNumber']?? null,
+            $json['accountPaymentMethodRef'] ?? null,
+            $json['cpfNumber'] ?? null,
             $json['cpfCompany'],
             $json['deleted'],
             (int) $json['storageBytesUsed'],
-            $json['created']?? null,
-            $json['lastLogin']?? null,
+            $json['created'] ?? null,
+            $json['lastLogin'] ?? null,
             $json['accountStatus'],
+            $json['resellerRef'] ?? null,
         );
     }
 
@@ -213,6 +219,7 @@ final class AccountHolder implements DomainObjectInterface
             'created' => $this->created,
             'lastLogin' => $this->lastLogin,
             'accountStatus' => $this->accountStatus,
+            'resellerRef' => $this->resellerRef,
         ];
     }
 }
