@@ -15,6 +15,8 @@ interface SitesApiInterface
         ?int $templateRef = null
     ): Site;
 
+    public function get(int $siteRef): Site;
+
     public function delete(int $siteRef): void;
 
     public function hardDelete(int $siteRef): void;

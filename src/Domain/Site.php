@@ -2,8 +2,6 @@
 
 namespace SandwaveIo\BaseKit\Domain;
 
-use DateTime;
-
 final class Site implements DomainObjectInterface
 {
     public int $ref;
@@ -11,13 +9,14 @@ final class Site implements DomainObjectInterface
     /** @var Domain[] */
     public array $domains;
 
-    public ?string $contentMapSite;
+    public ?int $contentMapSite;
 
     public ?int $template;
 
     public Domain $primaryDomain;
 
-    public ?DateTime $lastPublish;
+    /** @var array<string, string|int>|null */
+    public ?array $lastPublish;
 
     public int $brandRef;
 
@@ -36,21 +35,21 @@ final class Site implements DomainObjectInterface
     /**
      * Site constructor.
      *
-     * @param int         $ref
-     * @param Domain[]    $domains
-     * @param string|null $contentMapSite
-     * @param int|null    $template
-     * @param Domain      $primaryDomain
-     * @param ?DateTime   $lastPublish
-     * @param int         $brandRef
-     * @param int         $version
-     * @param bool        $enabled
-     * @param bool|null   $privateWidgets
-     * @param int|null    $mobileSiteRef
-     * @param bool        $mobile
-     * @param int|null    $profileRef
+     * @param int                        $ref
+     * @param Domain[]                   $domains
+     * @param int|null                   $contentMapSite
+     * @param int|null                   $template
+     * @param Domain                     $primaryDomain
+     * @param ?array<string, string|int> $lastPublish
+     * @param int                        $brandRef
+     * @param int                        $version
+     * @param bool                       $enabled
+     * @param bool|null                  $privateWidgets
+     * @param int|null                   $mobileSiteRef
+     * @param bool                       $mobile
+     * @param int|null                   $profileRef
      */
-    public function __construct(int $ref, array $domains, ?string $contentMapSite, ?int $template, Domain $primaryDomain, ?DateTime $lastPublish, int $brandRef, int $version, bool $enabled, ?bool $privateWidgets, ?int $mobileSiteRef, bool $mobile, ?int $profileRef)
+    public function __construct(int $ref, array $domains, ?int $contentMapSite, ?int $template, Domain $primaryDomain, ?array $lastPublish, int $brandRef, int $version, bool $enabled, ?bool $privateWidgets, ?int $mobileSiteRef, bool $mobile, ?int $profileRef)
     {
         $this->ref = $ref;
         $this->domains = $domains;
@@ -94,9 +93,17 @@ final class Site implements DomainObjectInterface
      */
     public static function fromArray(array $json)
     {
+        $domains = [];
+
+        foreach ($json['domains'] as $id => $domain) {
+            $domains[] = is_string($domain) ?
+                new Domain($id, $domain) :
+                Domain::fromArray($domain);
+        }
+
         return new Site(
             $json['ref'],
-            array_map(fn (array $domain): Domain => Domain::fromArray($domain), $json['domains']),
+            $domains,
             $json['contentMapSite'] ?? null,
             $json['template'] ?? null,
             Domain::fromArray($json['primaryDomain']),
@@ -104,7 +111,7 @@ final class Site implements DomainObjectInterface
             $json['brandRef'],
             $json['version'],
             $json['enabled'],
-            $json['privateWidgets'] ?? null,
+            is_numeric($json['privateWidgets']) ? (bool) $json['privateWidgets'] : null,
             $json['mobileSiteRef'] ?? null,
             $json['mobile'],
             $json['profileRef'] ?? null,

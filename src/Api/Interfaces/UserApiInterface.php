@@ -31,6 +31,8 @@ interface UserApiInterface
         ?array $metaData = null
     ): AccountHolder;
 
+    public function get(int $userRef): AccountHolder;
+
     /**
      * @param int         $userRef
      * @param string|null $firstName

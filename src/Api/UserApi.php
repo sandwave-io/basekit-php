@@ -57,6 +57,15 @@ final class UserApi extends AbstractApi implements UserApiInterface
         return AccountHolder::fromArray($response['accountHolder']);
     }
 
+    public function get(int $userRef): AccountHolder
+    {
+        $response = $this->client->get("/users/{$userRef}")->json();
+        if (! array_key_exists('accountHolder', $response)) {
+            throw new UnexpectedValueException('No account holder was provided by BaseKit.');
+        }
+        return AccountHolder::fromArray($response['accountHolder']);
+    }
+
     /**
      * This will only update the properties that have been included in the request.
      * All properties that are missing from the request will remain the same.
