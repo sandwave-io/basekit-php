@@ -20,7 +20,7 @@ final class AccountHolder implements DomainObjectInterface
 
     public string $languageCode;
 
-    public ?int $phoneNumber;
+    public ?string $phoneNumber;
 
     public ?string $address1;
 
@@ -42,7 +42,7 @@ final class AccountHolder implements DomainObjectInterface
 
     public ?int  $accountPaymentMethodRef;
 
-    public ?int $cpfNumber;
+    public ?string $cpfNumber;
 
     public int $cpfCompany;
 
@@ -53,39 +53,43 @@ final class AccountHolder implements DomainObjectInterface
     /** @var array<mixed>|null */
     public ?array $created;
 
-    public ?string $lastLogin;
+    /** @var array<string, string|int>|null */
+    public ?array $lastLogin;
 
     public string $accountStatus;
+
+    public ?int $resellerRef;
 
     /**
      * AccountHolder constructor.
      *
-     * @param int               $ref
-     * @param string            $firstName
-     * @param string            $lastName
-     * @param string            $username
-     * @param string            $email
-     * @param int               $suspended
-     * @param bool              $beta
-     * @param string            $languageCode
-     * @param int|null          $phoneNumber
-     * @param string|null       $address1
-     * @param string|null       $address2
-     * @param string|null       $city
-     * @param string|null       $postcode
-     * @param string|null       $country
-     * @param int               $newsletter
-     * @param int               $currencyRef
-     * @param string|null       $state
-     * @param Capabilities      $capabilities
-     * @param int|null          $accountPaymentMethodRef
-     * @param int|null          $cpfNumber
-     * @param int               $cpfCompany
-     * @param bool              $deleted
-     * @param int               $storageBytesUsed
-     * @param array<mixed>|null $created
-     * @param string|null       $lastLogin
-     * @param string            $accountStatus
+     * @param int                            $ref
+     * @param string                         $firstName
+     * @param string                         $lastName
+     * @param string                         $username
+     * @param string                         $email
+     * @param int                            $suspended
+     * @param bool                           $beta
+     * @param string                         $languageCode
+     * @param string|null                    $phoneNumber
+     * @param string|null                    $address1
+     * @param string|null                    $address2
+     * @param string|null                    $city
+     * @param string|null                    $postcode
+     * @param string|null                    $country
+     * @param int                            $newsletter
+     * @param int                            $currencyRef
+     * @param string|null                    $state
+     * @param Capabilities                   $capabilities
+     * @param int|null                       $accountPaymentMethodRef
+     * @param string|null                    $cpfNumber
+     * @param int                            $cpfCompany
+     * @param bool                           $deleted
+     * @param int                            $storageBytesUsed
+     * @param array<mixed>|null              $created
+     * @param array<string, string|int>|null $lastLogin
+     * @param string                         $accountStatus
+     * @param int|null                       $resellerRef
      */
     public function __construct(
         int $ref,
@@ -96,7 +100,7 @@ final class AccountHolder implements DomainObjectInterface
         int $suspended,
         bool $beta,
         string $languageCode,
-        ?int $phoneNumber,
+        ?string $phoneNumber,
         ?string $address1,
         ?string $address2,
         ?string $city,
@@ -107,13 +111,14 @@ final class AccountHolder implements DomainObjectInterface
         ?string $state,
         Capabilities $capabilities,
         ?int $accountPaymentMethodRef,
-        ?int $cpfNumber,
+        ?string $cpfNumber,
         int $cpfCompany,
         bool $deleted,
         int $storageBytesUsed,
         ?array $created,
-        ?string $lastLogin,
-        string $accountStatus
+        ?array $lastLogin,
+        string $accountStatus,
+        ?int $resellerRef,
     ) {
         $this->ref = $ref;
         $this->firstName = $firstName;
@@ -141,6 +146,7 @@ final class AccountHolder implements DomainObjectInterface
         $this->created = $created;
         $this->lastLogin = $lastLogin;
         $this->accountStatus = $accountStatus;
+        $this->resellerRef = $resellerRef;
     }
 
     /**
@@ -163,20 +169,21 @@ final class AccountHolder implements DomainObjectInterface
             $json['address1'] ??  null,
             $json['address2'] ?? null,
             $json['city']?? null,
-            $json['postcode']?? null,
-            $json['country']?? null,
+            $json['postcode'] ?? null,
+            $json['country'] ?? null,
             $json['newsletter'],
             $json['currencyRef'],
-            $json['state']?? null,
+            $json['state'] ?? null,
             Capabilities::fromArray($json['capabilities']),
-            $json['accountPaymentMethodRef']?? null,
-            $json['cpfNumber']?? null,
+            $json['accountPaymentMethodRef'] ?? null,
+            $json['cpfNumber'] ?? null,
             $json['cpfCompany'],
             $json['deleted'],
-            $json['storageBytesUsed'],
-            $json['created']?? null,
-            $json['lastLogin']?? null,
+            (int) $json['storageBytesUsed'],
+            $json['created'] ?? null,
+            $json['lastLogin'] ?? null,
             $json['accountStatus'],
+            $json['resellerRef'] ?? null,
         );
     }
 
@@ -212,6 +219,7 @@ final class AccountHolder implements DomainObjectInterface
             'created' => $this->created,
             'lastLogin' => $this->lastLogin,
             'accountStatus' => $this->accountStatus,
+            'resellerRef' => $this->resellerRef,
         ];
     }
 }

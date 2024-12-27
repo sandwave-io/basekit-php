@@ -1,0 +1,33 @@
+{
+  "site":
+  {
+    "ref":1,
+    "domains": {
+      "123": "example.com"
+    },
+    "contentMapSite":123,
+    "template":null,
+    "primaryDomain":
+    {
+      "ref":1,
+      "domainName":"example.com"
+    },
+    "firstPublish": {
+      "date": "2023-08-23 14:57:48.704403",
+      "timezone_type": 3,
+      "timezone": "Europe/London"
+    },
+    "lastPublish": {
+      "date": "2023-08-23 14:57:48.704403",
+      "timezone_type": 3,
+      "timezone": "Europe/London"
+    },
+    "brandRef":1,
+    "version": 69,
+    "enabled":true,
+    "privateWidgets":1,
+    "mobileSiteRef":null,
+    "mobile":false,
+    "profileRef":null
+  }
+}
