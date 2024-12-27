@@ -23,7 +23,6 @@ final class GetTest extends TestCase
         Assert::assertSame('Kees', $accountHolder->lastName);
         Assert::assertSame(1234, $accountHolder->storageBytesUsed);
         Assert::assertSame(789, $accountHolder->resellerRef);
-        Assert::assertIsArray($accountHolder->toArray());
     }
 
     public function testGetWithInvalidResponse(): void

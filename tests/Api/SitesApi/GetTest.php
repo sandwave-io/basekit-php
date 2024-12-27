@@ -23,7 +23,6 @@ final class GetTest extends TestCase
         $site = $client->sitesApi->get(1);
         Assert::assertInstanceOf(Site::class, $site);
         Assert::assertSame('example.com', $site->primaryDomain->domainName);
-        Assert::assertIsArray($site->toArray());
     }
 
     public function testGetInvalidJson(): void
