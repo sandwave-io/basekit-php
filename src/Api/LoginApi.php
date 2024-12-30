@@ -16,7 +16,7 @@ final class LoginApi extends AbstractApi implements LoginApiInterface
      */
     public function autoLogin(int $userRef): string
     {
-        $response = $this->client->post("/users/{$userRef}/auto-login")->json();
+        $response = $this->client->post("users/{$userRef}/auto-login")->json();
         if (! array_key_exists('hash', $response)) {
             throw new UnexpectedValueException('No auto-login hash was provided by BaseKit.');
         }

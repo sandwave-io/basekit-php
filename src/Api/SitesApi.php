@@ -44,7 +44,7 @@ final class SitesApi extends AbstractApi implements SitesApiInterface
             $payload['siteType'] = $siteType;
         }
 
-        $response = $this->client->post('/sites', $payload)->json();
+        $response = $this->client->post('sites', $payload)->json();
         if (! array_key_exists('site', $response)) {
             throw new UnexpectedValueException('No site was provided by BaseKit.');
         }
@@ -53,7 +53,7 @@ final class SitesApi extends AbstractApi implements SitesApiInterface
 
     public function get(int $siteRef): Site
     {
-        $response = $this->client->get("/sites/{$siteRef}")->json();
+        $response = $this->client->get("sites/{$siteRef}")->json();
 
         if (! array_key_exists('site', $response)) {
             throw new UnexpectedValueException('No site was provided by BaseKit.');
@@ -64,11 +64,11 @@ final class SitesApi extends AbstractApi implements SitesApiInterface
 
     public function delete(int $siteRef): void
     {
-        $this->client->delete("/sites/{$siteRef}");
+        $this->client->delete("sites/{$siteRef}");
     }
 
     public function hardDelete(int $siteRef): void
     {
-        $this->client->post("/sites/{$siteRef}/hard-delete");
+        $this->client->post("sites/{$siteRef}/hard-delete");
     }
 }

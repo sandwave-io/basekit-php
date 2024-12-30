@@ -21,6 +21,6 @@ final class PackageApi extends AbstractApi implements PackagesApiInterface
             'billingFrequency'  => $billingFrequency,
         ];
 
-        $this->client->post("/users/{$userRef}/account-packages", $payload);
+        $this->client->post("users/{$userRef}/account-packages", $payload);
     }
 }
