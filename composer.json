@@ -24,6 +24,7 @@
         "phpstan/phpstan-deprecation-rules": "^1.1.2",
         "phpstan/phpstan-strict-rules": "^1.5.0",
         "phpunit/phpunit": "^10.0.15",
+        "rector/rector": "^1.2",
         "sandwave-io/php-cs-fixer-config": "^1.0",
         "thecodingmachine/phpstan-strict-rules": "^1.0.0"
     },
