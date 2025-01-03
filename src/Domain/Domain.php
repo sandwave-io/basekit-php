@@ -4,20 +4,10 @@ namespace SandwaveIo\BaseKit\Domain;
 
 final class Domain implements DomainObjectInterface
 {
-    public int $ref;
-
-    public string $domainName;
-
-    /**
-     * Domain constructor.
-     *
-     * @param int    $ref
-     * @param string $domainName
-     */
-    public function __construct(int $ref, string $domainName)
-    {
-        $this->ref = $ref;
-        $this->domainName = $domainName;
+    public function __construct(
+        public int $ref,
+        public string $domainName,
+    ) {
     }
 
     /**
@@ -39,8 +29,8 @@ final class Domain implements DomainObjectInterface
     public static function fromArray(array $json): Domain
     {
         return new Domain(
-            $json['ref'],
-            $json['domainName']
+            ref: $json['ref'],
+            domainName: $json['domainName']
         );
     }
 }
