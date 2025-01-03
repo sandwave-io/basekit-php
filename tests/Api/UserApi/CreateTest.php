@@ -42,7 +42,7 @@ final class CreateTest extends TestCase
             MockedClientFactory::assertRoute('POST', '/users')
         );
         $this->expectException(UnexpectedValueException::class);
-        $accountHolder = $client->userApi->create(
+        $client->userApi->create(
             1,
             'Test',
             'Kees',
