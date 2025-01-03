@@ -2,6 +2,7 @@
     "accountHolder":
     {
         "ref": 1,
+        "brandRef": 123,
         "firstName": "Test",
         "lastName": "Kees",
         "username": "testkees",
