@@ -1,14 +1,17 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace SandwaveIo\BaseKit\Support;
 
 use GuzzleHttp\Client;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
-use SandwaveIo\BaseKit\Exceptions\BadRequestException;
-use SandwaveIo\BaseKit\Exceptions\BaseKitRequestException;
+use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use SandwaveIo\BaseKit\Exceptions\ForbiddenException;
+use SandwaveIo\BaseKit\Exceptions\BadRequestException;
 use SandwaveIo\BaseKit\Exceptions\UnauthorizedException;
+use SandwaveIo\BaseKit\Exceptions\BaseKitRequestException;
 
 final class AuthorizedClient
 {
@@ -133,8 +136,15 @@ final class AuthorizedClient
         );
 
         // Send request.
-        $response = $this->client->request($method, $endpoint . $this->buildQuery($query), $metaData);
-
+        try {
+            $response = $this->client->request($method, $endpoint . $this->buildQuery($query), $metaData);
+        } catch (GuzzleException $e) {
+            $this->log(
+                sprintf('BaseKit.EXCEPTION: %s', $e->getMessage()),
+                ['exception' => $e]
+            );
+            throw new BaseKitRequestException('Error while sending request to BaseKit', (int) $e->getCode(), $e);
+        }
         return $this->handleResponse($response, $expectedResponse);
     }
 
