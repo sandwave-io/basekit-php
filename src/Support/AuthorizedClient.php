@@ -143,7 +143,7 @@ final class AuthorizedClient
                 sprintf('BaseKit.EXCEPTION: %s', $e->getMessage()),
                 ['exception' => $e]
             );
-            throw new BaseKitRequestException('Error while sending request to BaseKit', (int) $e->getCode(), $e);
+            throw new BaseKitRequestException('Error while sending request to BaseKit', $e->getCode(), $e);
         }
         return $this->handleResponse($response, $expectedResponse);
     }
