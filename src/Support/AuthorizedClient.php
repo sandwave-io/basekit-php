@@ -1,17 +1,17 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace SandwaveIo\BaseKit\Support;
 
 use GuzzleHttp\Client;
-use Psr\Log\LoggerInterface;
-use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\GuzzleException;
-use SandwaveIo\BaseKit\Exceptions\ForbiddenException;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerInterface;
 use SandwaveIo\BaseKit\Exceptions\BadRequestException;
-use SandwaveIo\BaseKit\Exceptions\UnauthorizedException;
 use SandwaveIo\BaseKit\Exceptions\BaseKitRequestException;
+use SandwaveIo\BaseKit\Exceptions\ForbiddenException;
+use SandwaveIo\BaseKit\Exceptions\UnauthorizedException;
 
 final class AuthorizedClient
 {
