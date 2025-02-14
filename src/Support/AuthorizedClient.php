@@ -138,12 +138,12 @@ final class AuthorizedClient
         // Send request.
         try {
             $response = $this->client->request($method, $endpoint . $this->buildQuery($query), $metaData);
-        } catch (GuzzleException $e) {
+        } catch (GuzzleException $exception) {
             $this->log(
-                sprintf('BaseKit.EXCEPTION: %s', $e->getMessage()),
-                ['exception' => $e]
+                sprintf('BaseKit.EXCEPTION: %s', $exception->getMessage()),
+                ['exception' => $exception]
             );
-            throw new BaseKitRequestException('Error while sending request to BaseKit', $e->getCode(), $e);
+            throw new BaseKitRequestException('Error while sending request to BaseKit', $exception->getCode(), $exception);
         }
         return $this->handleResponse($response, $expectedResponse);
     }
