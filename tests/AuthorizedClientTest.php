@@ -2,11 +2,17 @@
 
 namespace SandwaveIo\BaseKit\Tests;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Request;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use SandwaveIo\BaseKit\Exceptions\BadRequestException;
 use SandwaveIo\BaseKit\Exceptions\BaseKitClientException;
+use SandwaveIo\BaseKit\Exceptions\BaseKitRequestException;
 use SandwaveIo\BaseKit\Exceptions\ForbiddenException;
 use SandwaveIo\BaseKit\Exceptions\UnauthorizedException;
 use SandwaveIo\BaseKit\Support\AuthorizedClient;
@@ -48,6 +54,58 @@ final class AuthorizedClientTest extends TestCase
             //@phpstan-ignore-next-line
             $client->{$method}('test');
         }
+    }
+
+    /**
+     * @covers \SandwaveIo\BaseKit\Support\AuthorizedClient::request
+     *
+     * @throws \SandwaveIo\BaseKit\Exceptions\BaseKitRequestException
+     */
+    public function testTimeoutException(): void
+    {
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger->method('debug');
+
+        $mock = new MockHandler([
+            new ConnectException(
+                'cURL error 28: Operation timed out',
+                new Request('GET', '/test')
+            ),
+        ]);
+        $handler = HandlerStack::create($mock);
+        $guzzleClient = new Client(['handler' => $handler]);
+
+        $client = new AuthorizedClient('https://example.com', 'test', 'bigsecretdontellanyone');
+        $client->setClient($guzzleClient);
+
+        $this->expectException(BaseKitRequestException::class);
+        $client->get('/test');
+    }
+
+    /**
+     * @covers \SandwaveIo\BaseKit\Support\AuthorizedClient::request
+     *
+     * @throws \SandwaveIo\BaseKit\Exceptions\BaseKitRequestException
+     */
+    public function testNotResolvableHostException(): void
+    {
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger->method('debug');
+
+        $mock = new MockHandler([
+            new ConnectException(
+                'cURL error 6: Could not resolve host',
+                new Request('GET', '/test')
+            ),
+        ]);
+        $handler = HandlerStack::create($mock);
+        $guzzleClient = new Client(['handler' => $handler]);
+
+        $client = new AuthorizedClient('https://example.com', 'test', 'bigsecretdontellanyone');
+        $client->setClient($guzzleClient);
+
+        $this->expectException(BaseKitRequestException::class);
+        $client->get('/test');
     }
 
     /**
